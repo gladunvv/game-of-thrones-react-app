@@ -6,9 +6,16 @@
 
   &__title {
     font-size: 40px;
-    font-weight: bold;
+    font-weight: normal;
     display: block;
     margin-bottom: 17px;
+
+    .title-name {
+      display: block;
+      margin-top: 10px;
+      font-size: 43px;
+      font-weight: bold;
+    }
   }
 
   @media screen and (max-width: 450px) {
