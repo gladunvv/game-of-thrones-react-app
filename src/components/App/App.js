@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 import { Header } from '../Header';
 import { RandomChar } from '../RandomChar';
-import { ItemList } from '../ItemList';
-import { CharDetails } from '../CharDetails';
 import { Button } from '../Button';
+import { CharacterPage } from '../pages/CharacterPage';
 import './App.scss';
 
 export class App extends Component {
   state = {
     visibleRandomChar: true,
-    selectedChar: null,
   };
 
   visibleClick = () => {
@@ -17,12 +15,6 @@ export class App extends Component {
       return {
         visibleRandomChar: !state.visibleRandomChar,
       };
-    });
-  };
-
-  onCharSelected = (id) => {
-    this.setState({
-      selectedChar: id,
     });
   };
 
@@ -38,13 +30,20 @@ export class App extends Component {
             {randomCharResolve}
             <Button onClick={this.visibleClick} buttonName='toggle' />
           </section>
+          <CharacterPage />
+          {/* <section className='item-list'>
+            <ItemList onCharSelected={this.onCharSelected} />
+          </section>
+          <section className='char-details'>
+            <CharDetails charId={selectedChar} />
+          </section>
           <section className='item-list'>
             <ItemList onCharSelected={this.onCharSelected} />
           </section>
+          <section className='char-details'>
+            <CharDetails charId={selectedChar} />
+          </section> */}
         </div>
-        <section className='char-details'>
-          <CharDetails charId={selectedChar} />
-        </section>
       </>
     );
   }

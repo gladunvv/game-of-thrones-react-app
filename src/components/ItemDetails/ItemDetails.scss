@@ -1,4 +1,4 @@
-.char-details-block {
+.item-details-block {
   font-size: 30px;
   font-family: Tenali;
   line-height: 25px;
@@ -10,8 +10,19 @@
     display: block;
     margin-bottom: 17px;
   }
-  
+
   .details-list {
-      list-style: none;
+    list-style: none;
+  }
+}
+.details-list {
+  &__item {
+    
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .term {
+    font-weight: bold;
   }
 }

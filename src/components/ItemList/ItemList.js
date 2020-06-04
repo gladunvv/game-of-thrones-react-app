@@ -1,43 +1,45 @@
 import React, { Component } from 'react';
 import { Loader } from '../Loader';
-import GotService from '../../services/gotService';
 
 import './ItemList.scss';
 
 export class ItemList extends Component {
-  gotService = new GotService();
   state = {
-    charList: null,
+    itemList: null,
   };
 
   componentDidMount() {
-    this.gotService.getAllCharacters().then((charList) => {
+    const { getData } = this.props;
+    getData().then((itemList) => {
+      console.log('itemList :>> ', itemList);
       this.setState({
-        charList,
+        itemList,
       });
     });
   }
 
   renderItems(arr) {
-    return arr.map((item, i) => {
+    return arr.map((item) => {
+      const { id } = item;
+      const label = this.props.renderItem(item);
       return (
         <li
-          key={i}
+          key={id}
           className='item-list-block__item'
-          onClick={this.props.onCharSelected(i)}
+          onClick={() => this.props.onItemSelected(id)}
         >
-          {item.name}
+          {label}
         </li>
       );
     });
   }
 
   render() {
-    const { charList } = this.state;
-    if (!charList) {
+    const { itemList } = this.state;
+    if (!itemList) {
       return <Loader />;
     }
-    const items = this.renderItems(charList);
+    const items = this.renderItems(itemList);
     return <ul className='item-list-block'>{items}</ul>;
   }
 }

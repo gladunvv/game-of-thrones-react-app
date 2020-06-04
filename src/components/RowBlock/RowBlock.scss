@@ -1,0 +1,18 @@
+.right-block {
+  margin-top: 100px;
+  margin-right: 80px;
+
+  @media screen and (max-width: 800px) {
+    margin: 70px 0 80px 50px;
+  }
+}
+
+.left-block {
+  //   margin-top: 100px;
+  margin: 100px auto;
+
+  @media screen and (max-width: 800px) {
+    margin-top: 70px;
+    margin-left: 50px;
+  }
+}

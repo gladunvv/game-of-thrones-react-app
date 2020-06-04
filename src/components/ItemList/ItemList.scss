@@ -6,6 +6,11 @@
   font-weight: bold;
   list-style: none;
 
+  &__item {
+    display: flex;
+    justify-content: center;
+  }
+
   @media screen and (max-width: 1000px) {
     width: 300px;
   }
