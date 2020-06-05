@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { ItemList } from '../../ItemList';
 import { ItemDetails, Field } from '../../ItemDetails';
 import { ErrorMessage } from '../../ErrorMessage';
@@ -11,13 +11,16 @@ export class BookPage extends Component {
     error: false,
   };
 
+  gotService = new gotService();
+
   onItemSelected = (id) => {
+    console.log('id :>> ', id);
     this.setState({
       selectedBook: id,
     });
   };
 
-  ComponentDidCatch() {
+  componentDidCatch() {
     this.setState({
       error: true,
     });
@@ -30,15 +33,16 @@ export class BookPage extends Component {
 
     const itemList = (
       <ItemList
-        onItemSelected={(itemId) => {
-          this.props.history.push(itemId);
-        }}
+        onItemSelected={this.onItemSelected}
         getData={this.gotService.getAllBooks}
         renderItem={({ name }) => name}
       />
     );
     const bookDetails = (
-      <ItemDetails itemId={this.props.bookId} getData={this.gotService.getBook}>
+      <ItemDetails
+        itemId={this.state.selectedBook}
+        getData={this.gotService.getBook}
+      >
         <Field field='numberOfPages' label='Number of pages' />
         <Field field='publisher' label='Publisher' />
         <Field field='released' label='Released' />

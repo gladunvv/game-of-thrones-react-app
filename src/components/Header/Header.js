@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import './Header.scss';
 
@@ -6,17 +7,17 @@ export const Header = () => {
   return (
     <div className='header-block'>
       <div className='header-block__title'>
-        <a href='#'>Game of Thrones DB</a>
+        <Link to='/'>Game of Thrones DB</Link>
       </div>
       <ul className='header-block__links'>
         <li>
-          <a href='#'>Characters</a>
+          <Link to='/characters'>Characters</Link>
         </li>
         <li>
-          <a href='#'>Houses</a>
+          <Link to='/houses'>Houses</Link>
         </li>
         <li>
-          <a href='#'>Books</a>
+          <Link to='/books'>Books</Link>
         </li>
       </ul>
     </div>

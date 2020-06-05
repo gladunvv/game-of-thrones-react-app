@@ -11,7 +11,6 @@ export class ItemList extends Component {
   componentDidMount() {
     const { getData } = this.props;
     getData().then((itemList) => {
-      console.log('itemList :>> ', itemList);
       this.setState({
         itemList,
       });

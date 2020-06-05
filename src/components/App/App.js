@@ -3,6 +3,9 @@ import { Header } from '../Header';
 import { RandomChar } from '../RandomChar';
 import { Button } from '../Button';
 import { CharacterPage } from '../pages/CharacterPage';
+import { BookPage } from '../pages/BooksPage';
+import { HousesPage } from '../pages/HousesPage';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.scss';
 
 export class App extends Component {
@@ -23,28 +26,20 @@ export class App extends Component {
 
     const randomCharResolve = visibleRandomChar ? <RandomChar /> : null;
     return (
-      <>
-        <Header />
-        <div className='sections-wrapper'>
-          <section className='random-char'>
-            {randomCharResolve}
-            <Button onClick={this.visibleClick} buttonName='toggle' />
-          </section>
-          <CharacterPage />
-          {/* <section className='item-list'>
-            <ItemList onCharSelected={this.onCharSelected} />
-          </section>
-          <section className='char-details'>
-            <CharDetails charId={selectedChar} />
-          </section>
-          <section className='item-list'>
-            <ItemList onCharSelected={this.onCharSelected} />
-          </section>
-          <section className='char-details'>
-            <CharDetails charId={selectedChar} />
-          </section> */}
-        </div>
-      </>
+      <Router>
+        <>
+          <Header />
+          <div className='sections-wrapper'>
+            <section className='random-char'>
+              {randomCharResolve}
+              <Button onClick={this.visibleClick} buttonName='toggle' />
+            </section>
+            <Route path='/characters' component={CharacterPage} />
+            <Route path='/houses' component={HousesPage} />
+            <Route path='/books' exact component={BookPage} />
+          </div>
+        </>
+      </Router>
     );
   }
 }

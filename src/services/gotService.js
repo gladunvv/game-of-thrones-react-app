@@ -13,11 +13,13 @@ export default class GotService {
   };
 
   getAllBooks = async () => {
-    return await this.getResource(`/books/`);
+    const res = await this.getResource(`/books/`);
+    return res.map(this._transformBook);
   };
 
   getBook = async (id) => {
-    return await this.getResource(`/books/${id}/`);
+    const book = await this.getResource(`/books/${id}/`);
+    return this._transformBook(book);
   };
 
   getAllCharacters = async () => {
@@ -31,11 +33,13 @@ export default class GotService {
   };
 
   getAllHouses = async () => {
-    return await this.getResource(`/houses/`);
+    const res = await this.getResource(`/houses/`);
+    return res.map(this._transformHouse);
   };
 
   getHouse = async (id) => {
-    return await this.getResource(`/houses/${id}/`);
+    const house = await this.getResource(`/houses/${id}/`);
+    return this._transformHouse(house);
   };
 
   isSet(data) {
@@ -62,7 +66,7 @@ export default class GotService {
     };
   };
 
-  _transformHouse(house) {
+  _transformHouse = (house) => {
     return {
       id: this._extractId(house),
       name: this.isSet(house.name),
@@ -72,9 +76,9 @@ export default class GotService {
       overload: this.isSet(house.overload),
       ancestralWeapons: this.isSet(house.ancestralWeapons),
     };
-  }
+  };
 
-  _transformBook(book) {
+  _transformBook = (book) => {
     return {
       id: this._extractId(book),
       name: this.isSet(book.name),
@@ -82,5 +86,5 @@ export default class GotService {
       publiser: this.isSet(book.publiser),
       released: this.isSet(book.released),
     };
-  }
+  };
 }
