@@ -22,7 +22,7 @@ export class App extends Component {
   };
 
   render() {
-    const { visibleRandomChar, selectedChar } = this.state;
+    const { visibleRandomChar } = this.state;
 
     const randomCharResolve = visibleRandomChar ? <RandomChar /> : null;
     return (
